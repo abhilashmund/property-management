@@ -19,11 +19,11 @@ public class UserServiceImpl implements UserService{
     private UserConverter userConverter;
 
     @Override
-    public UserDTO register(UserDTO UserDTO) {
-        UserEntity userEntity = userConverter.convertDTOtoEntity(UserDTO);
+    public UserDTO register(UserDTO userDTO) {
+        UserEntity userEntity = userConverter.convertDTOtoEntity(userDTO);
         userEntity = userRepository.save(userEntity);
-        UserDTO = userConverter.convertEntitytoDTO(userEntity);
-        return UserDTO;
+        userDTO = userConverter.convertEntitytoDTO(userEntity);
+        return userDTO;
     }
 
     @Override

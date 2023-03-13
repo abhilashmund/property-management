@@ -35,35 +35,30 @@ public class PropertyController {
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyDTO>> getAllProperties(){
         List<PropertyDTO> propertyList = propertyService.getAllProperties();
-        ResponseEntity<List<PropertyDTO>> responseEntity = new ResponseEntity<>(propertyList, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity<>(propertyList, HttpStatus.OK);
     }
 
     @PutMapping("/properties/{propertyId}")
     public ResponseEntity<PropertyDTO> updateProperty(@RequestBody PropertyDTO propertyDTO, @PathVariable Long propertyId){
         propertyDTO = propertyService.updateProperty(propertyDTO, propertyId);
-        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.CREATED);
-        return responseEntity;
+        return new ResponseEntity<>(propertyDTO, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/properties/{propertyId}")
     public ResponseEntity<PropertyDTO> deleteProperty(@PathVariable Long propertyId){
         PropertyDTO propertyDTO = propertyService.deleteProperty(propertyId);
-        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity<>(propertyDTO, HttpStatus.OK);
     }
 
     @PatchMapping("/properties/update-description/{propertyId}")
     public ResponseEntity<PropertyDTO> updatePropertyDescription(@RequestBody PropertyDTO propertyDTO, @PathVariable Long propertyId){
         propertyDTO = propertyService.updatePropertyDescription(propertyDTO, propertyId);
-        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity<>(propertyDTO, HttpStatus.OK);
     }
 
     @PatchMapping("/properties/update-price/{propertyId}")
     public ResponseEntity<PropertyDTO> updatePropertyPrice(@RequestBody PropertyDTO propertyDTO, @PathVariable Long propertyId){
         propertyDTO = propertyService.updatePropertyPrice(propertyDTO, propertyId);
-        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(propertyDTO, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity<>(propertyDTO, HttpStatus.OK);
     }
 }
