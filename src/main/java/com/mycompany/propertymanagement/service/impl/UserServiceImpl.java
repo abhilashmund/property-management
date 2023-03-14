@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.propertymanagement.converter.UserConverter;
 import com.mycompany.propertymanagement.dto.UserDTO;
+import com.mycompany.propertymanagement.entity.AddressEntity;
 import com.mycompany.propertymanagement.entity.UserEntity;
 import com.mycompany.propertymanagement.exception.BusinessException;
 import com.mycompany.propertymanagement.exception.ErrorModel;
+import com.mycompany.propertymanagement.repository.AddressRepositoty;
 import com.mycompany.propertymanagement.repository.UserRepository;
 import com.mycompany.propertymanagement.service.UserService;
 
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserConverter userConverter;
+
+    @Autowired
+    private AddressRepositoty addressRepositoty;
 
     @Override
     public UserDTO register(UserDTO userDTO) {
@@ -37,7 +42,19 @@ public class UserServiceImpl implements UserService{
         }
         UserEntity userEntity = userConverter.convertDTOtoEntity(userDTO);
         userEntity = userRepository.save(userEntity);
+
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setHouseNo(userDTO.getHouseNo());
+        addressEntity.setCity(userDTO.getCity());
+        addressEntity.setCountry(userDTO.getCountry());
+        addressEntity.setPostalCode(userDTO.getPostalCode());
+        addressEntity.setHouseNo(userDTO.getHouseNo());
+        addressEntity.setUserEntity(userEntity);
+
+        addressRepositoty.save(addressEntity); //Address is linked to User (OneToOne)
+
         userDTO = userConverter.convertEntitytoDTO(userEntity);
+
         return userDTO;
     }
 
