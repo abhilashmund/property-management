@@ -13,7 +13,6 @@ import com.mycompany.propertymanagement.entity.PropertyEntity;
 import com.mycompany.propertymanagement.entity.UserEntity;
 import com.mycompany.propertymanagement.exception.BusinessException;
 import com.mycompany.propertymanagement.exception.ErrorModel;
-import com.mycompany.propertymanagement.repository.AddressRepositoty;
 import com.mycompany.propertymanagement.repository.PropertyRepository;
 import com.mycompany.propertymanagement.repository.UserRepository;
 import com.mycompany.propertymanagement.service.PropertyService;
@@ -29,9 +28,6 @@ public class PropertyServiceImpl implements PropertyService{
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private AddressRepositoty addressRepositoty;
 
     @Override
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
